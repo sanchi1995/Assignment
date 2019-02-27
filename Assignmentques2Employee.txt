@@ -1,0 +1,86 @@
+package JDBC;
+
+import java.util.*;
+import java.util.ArrayList;
+
+
+ class Employees{
+	int eid;
+	String ename;
+	String department;
+	Double salary;
+	
+	public Employees(int eid,String ename, String department, Double  salary) // constructor
+	{
+		this.eid = eid;
+		this.ename = ename;
+		this.department =department ;
+		this.salary=salary;
+	}
+}
+class Sortbydepartment implements Comparator<Employees>
+{
+	@Override
+	
+	public int compare(Employees a, Employees b)
+	{
+		return a.department.compareTo(b.department);
+	}
+
+}
+class Sortbysalary implements Comparator<Employees>
+{
+	@Override
+	
+	public int compare(Employees a, Employees b)
+	{
+		return a.salary.compareTo(b.salary);
+	}
+
+}
+
+public class EmployeeData{
+	
+
+public static void main(String [] args)
+{
+	ArrayList<Employees> ee = new ArrayList<Employees>();
+	
+	Employees e1 = new Employees(11,"c++","HR",56789.0);
+	Employees e2 = new Employees(12,"c","CSO",3456.00);
+	Employees e3 = new Employees(13,"java","MANAGER",2345.87);
+	Employees e4 = new Employees(14,"mm","l&d",234.90);
+	Employees e5 = new Employees(15,"hp","RP",1234.0);
+	Employees e6 = new Employees(16,"kk","Security",3452.89);
+	Employees e7 = new Employees(17,"ctt","IT",3452.89);
+	Employees e8 = new Employees(18,"hjj","Testing",4562.9);
+	Employees e9 = new Employees(19,"hh","development",2345.72);
+	Employees e10 = new Employees(20,"oo","cso",12345.90);
+	
+	ee.add(e1);
+	ee.add(e2);
+	ee.add(e3);
+	ee.add(e4);
+	ee.add(e5);
+	ee.add(e6);
+	ee.add(e7);
+	ee.add(e8);
+	ee.add(e9);
+	ee.add(e10);
+	
+	Collections.sort(ee, new Sortbydepartment());
+	
+	for(Employees e:ee)
+	{
+		System.out.println(e.eid+"   "+e.ename+"      "+e.department+"   "+e.salary);
+	}
+	System.out.println("**************************");
+	Collections.sort(ee, Collections.reverseOrder(new Sortbysalary()));
+	for(Employees e:ee)
+	{
+		System.out.println(e.eid+"   "+e.ename+"      "+e.department+"   "+e.salary);
+	}
+	
+	
+}
+}

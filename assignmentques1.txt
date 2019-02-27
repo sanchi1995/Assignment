@@ -1,0 +1,54 @@
+package JDBC;
+
+import java.sql.*;
+
+
+public class Ques1Insert {
+
+	
+	Connection con;
+	PreparedStatement pstmt;
+	
+	public void createConnection()
+	{
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			 con = DriverManager.getConnection("jdbc:mysql://localhost:3307/mysqljdbc","root","nikita@1234");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void insertRec()
+	{
+		String query = "insert into  candidates (first_name,last_name,dob,phone,email) values(?,?,?,?,?)";
+		try {
+			PreparedStatement pstmt = con.prepareStatement(query); //for providing paramter at runtime 
+			pstmt.setString(1, "sanchita");
+			pstmt.setString(2, "singhal");
+			pstmt.setString(3, "1995-09-06");
+			pstmt.setString(4, "123456743");
+			pstmt.setString(5, "sanchitasinghal06@gmail");
+			pstmt.execute();
+			con.close();
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Ques1Insert ob = new Ques1Insert();
+		ob.createConnection();
+		ob.insertRec();
+		
+	}
+
+}
